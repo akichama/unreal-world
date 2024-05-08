@@ -1,28 +1,31 @@
 Rails.application.routes.draw do
-  get 'notifications/index'
-  get 'notifications/destroy'
-  get 'searches/search'
+  root controller: :homes, action: :top
+  get :about, controller: :homes, action: :about
+  get :search, controller: :searches, action: :search
+
   devise_for :admin, controllers: {
     sessions: "admin/sessions"
   }
 
-  devise_for :customers, controllers: {
-    registrations: "public/registrations",
-    sessions: "user/sessions"
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+    sessions: "users/sessions"
   }
-  
-  root :to =>"homes#top"
-  get 'homes/about'
-  get "search" => "searches#search"
-  
-  resources :users, only: [:mypage,:show,:edit,:update,:destroy] do
+
+  resources :users, only: [:show] do
     resource :relationships, only: [:create, :destroy]
-      get "followings" => "relationships#followings", as: "followings"
-  	  get "followers" => "relationships#followers", as: "followers"
+    get :followings
+    get :followers
+    collection do
+      get :mypage
+    end
   end
-  	  
-  resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destoy]
+
+  resources :posts do
     resources :post_comments, only: [:create, :destroy]
-    resource :favorites, only: [:index, :create, :destroy]
-    
+    resource :favorites, only: [:create, :destroy]
+    resources :favorite_users, only: [:index]
+  end
+
+  resources :notifications, only: [:index, :destroy]
 end
