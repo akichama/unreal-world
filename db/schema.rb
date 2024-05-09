@@ -27,9 +27,6 @@ ActiveRecord::Schema.define(version: 2024_05_08_072849) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "favorite_id", null: false
-    t.integer "post_comment_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

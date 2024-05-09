@@ -1,2 +1,25 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<div class="col-md-2 offset-1">
+  <h3 class="my-3 bg-light text-center"><strong>新規投稿</strong></h3>
+</div>
+
+<%= form_with model: @post, class: 'col-6 mx-auto' do |f| %>
+  <div class="form-group row">
+    <%= f.label :title, 'タイトル', class: 'col-sm-3 col-form-label' %>
+    <div class="col-sm-9">
+      <%= f.text_field :title, class: 'col-form-label' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :body, '本文', class: 'col-sm-3 col-form-label' %>
+    <div class="col-sm-9">
+      <%= f.text_field :body, class: 'col-form-label' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :image, '画像', class: 'col-sm-3 col-form-label' %>
+    <div class="col-sm-9">
+      <%= f.file_field :image %>
+    </div>
+  </div>
+  <%= f.submit '投稿' %>
+<% end %>

@@ -1,2 +1,27 @@
-<h1>Customers#show</h1>
-<p>Find me in app/views/customers/show.html.erb</p>
+<div class="col-md-2 offset-1">
+      <h3 class="my-3 bg-light text-center"><strong>マイページ</strong></h3>
+</div>
+
+<div class="col-md-4 offset-1 d-flex justify-content-start my-3">
+  <div class="mx-5"><%= link_to "編集する", edit_user_registration_path, class: 'btn btn-sm btn-success' %></div>
+</div>
+
+<div class="col-md-4 offset-1">
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <th class="table-secondary">氏名</th>
+        <td><%= @user.name %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="col-md-4 offset-1">
+  <% @posts.each do |post| %>
+    <div>
+      <div>タイトル：<%= post.title %></div>
+      <div>本文：<%= post.body %></div>
+    </div>
+  <% end %>
+</div>

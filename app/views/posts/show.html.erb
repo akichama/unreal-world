@@ -1,2 +1,15 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="row">
+  <div class="offset-2 my-5">
+    <div class="d-flex justfy-content-center">
+      <div class="mx-5">
+        <%= image_tag @post.get_image, size:"400x400" %>
+        <div>
+          <div class="mx-5">
+          <div class="my-5"><h1><strong><%= @post.title %></strong></h1></div>
+          <div class="my-5"><h2><%= @post.body %></h2></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
