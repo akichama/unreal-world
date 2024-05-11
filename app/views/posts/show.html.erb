@@ -6,8 +6,9 @@
           <div class="mx-5">
           <div class="my-5"><h1><strong><%= @post.title %></strong></h1></div>
           <div class="my-5"><h2><%= @post.body %></h2></div>
-          <div class="mx-5"><%= link_to "編集する", edit_post_path, class: 'btn btn-sm btn-success' %></div>
-          <div><%= button_to "削除", post_path, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+          <div class="my-5"><%= image_tag @post.get_image %></div>
+          <div class="mx-1 my-1"><%= link_to "編集する", edit_post_path, class: 'btn btn-sm btn-success' %></div>
+          <div class="mx-1 my-"><%= link_to '削除する', post_path(@post.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></div>
         </div>
       </div>
     </div>

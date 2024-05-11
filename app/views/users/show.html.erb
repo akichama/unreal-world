@@ -12,6 +12,11 @@
       <tr>
         <th class="table-secondary">氏名</th>
         <td><%= @user.name %></td>
+        <td><%= image_tag @user.get_image %></td>
+      </tr>
+      <tr>
+        <th>自己紹介</th>
+          <td colspan=2><%= @user.introduction %></td>
       </tr>
     </tbody>
   </table>
@@ -22,6 +27,7 @@
     <div>
       <div>タイトル：<%= post.title %></div>
       <div>本文：<%= post.body %></div>
+      <div><%= image_tag post.get_image %></div>
     </div>
   <% end %>
 </div>

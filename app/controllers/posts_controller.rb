@@ -4,9 +4,10 @@ class PostsController < ApplicationController
   end
 
   def create
+    #byebug
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
+    @post.save!
     redirect_to posts_path
   end
 
