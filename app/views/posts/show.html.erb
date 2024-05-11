@@ -2,12 +2,12 @@
   <div class="offset-2 my-5">
     <div class="d-flex justfy-content-center">
       <div class="mx-5">
-        <%= image_tag @post.get_image, size:"400x400" %>
         <div>
           <div class="mx-5">
           <div class="my-5"><h1><strong><%= @post.title %></strong></h1></div>
           <div class="my-5"><h2><%= @post.body %></h2></div>
-          </div>
+          <div class="mx-5"><%= link_to "編集する", edit_post_path, class: 'btn btn-sm btn-success' %></div>
+          <div><%= button_to "削除", post_path, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
         </div>
       </div>
     </div>

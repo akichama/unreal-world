@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = current_customer
+    user = current_user
     user.update(user_params)
     redirect_to mypage_users_path
   end

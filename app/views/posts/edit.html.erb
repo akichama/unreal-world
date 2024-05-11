@@ -1,2 +1,32 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>error
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h1>Editing Book</h1>
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>error
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @post, url: post_path(@post.id), method: :patch do |f| %>
+
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+
+  <h4>Body</h4>
+  <%= f.text_area :body %>
+
+  <%= f.submit 'Update Book' %>
+  <%= link_to "Show", post_path(@post.id) %>
+  <%= link_to "Back", posts_path %>
+
+<% end %>
