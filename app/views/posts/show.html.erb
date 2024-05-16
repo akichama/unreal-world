@@ -4,11 +4,14 @@
       <div class="mx-5">
         <div>
           <div class="mx-5">
+          <div class="mx-5"><h2><%= link_to @user.name, user_path(@user.id) %></h2>
           <div class="my-5"><h1><strong><%= @post.title %></strong></h1></div>
           <div class="my-5"><h2><%= @post.body %></h2></div>
           <div class="my-5"><%= image_tag @post.get_image %></div>
-          <div class="mx-1 my-1"><%= link_to "編集する", edit_post_path, class: 'btn btn-sm btn-success' %></div>
-          <div class="mx-1 my-"><%= link_to '削除する', post_path(@post.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></div>
+          <% if @post.user == current_user %>
+            <div class="mx-1 my-1"><%= link_to "編集する", edit_post_path, class: 'btn btn-sm btn-success' %></div>
+            <div class="mx-1 my-"><%= link_to '削除する', post_path(@post.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></div>
+          <% end %>
         </div>
       </div>
     </div>

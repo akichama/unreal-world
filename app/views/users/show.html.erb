@@ -1,10 +1,16 @@
 <div class="col-md-2 offset-1">
-      <h3 class="my-3 bg-light text-center"><strong>マイページ</strong></h3>
+  <h3 class="my-3 bg-light text-center">
+    <strong>
+      <%= @user == current_user ? 'マイページ' : @user.name %>
+    </strong>
+  </h3>
 </div>
 
-<div class="col-md-4 offset-1 d-flex justify-content-start my-3">
-  <div class="mx-5"><%= link_to "編集する", edit_user_registration_path, class: 'btn btn-sm btn-success' %></div>
-</div>
+<% if @user == current_user %>
+  <div class="col-md-4 offset-1 d-flex justify-content-start my-3">
+    <div class="mx-5"><%= link_to "編集する", edit_user_registration_path, class: 'btn btn-sm btn-success' %></div>
+  </div>
+<% end %>
 
 <div class="col-md-4 offset-1">
   <table class="table table-bordered">
@@ -23,8 +29,9 @@
 </div>
 
 <div class="col-md-4 offset-1">
-  <% @posts.each do |post| %>
+  <% @user.posts.each do |post| %>
     <div>
+      <div><%= @user.name %></div>
       <div>タイトル：<%= post.title %></div>
       <div>本文：<%= post.body %></div>
       <div><%= image_tag post.get_image %></div>

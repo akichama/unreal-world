@@ -1,13 +1,5 @@
-<% if @post.errors.any? %>
-  <%= @post.errors.count %>error
-  <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<h1>編集</h1>
 
-<h1>Editing Book</h1>
 <% if @post.errors.any? %>
   <%= @post.errors.count %>error
   <ul>
@@ -19,10 +11,10 @@
 
 <%= form_with model: @post, url: post_path(@post.id), method: :patch do |f| %>
 
-  <h4>Title</h4>
+  <h4>タイトル</h4>
   <%= f.text_field :title %>
 
-  <h4>Body</h4>
+  <h4>本文</h4>
   <%= f.text_area :body %>
 
   <%= f.submit 'Update Book' %>
