@@ -26,6 +26,7 @@ class PostsController < ApplicationController
     # is_matching_login_user
     @post = Post.find(params[:id])
     @user = @post.user
+    @post_comment = PostComment.new
   end
 
   def edit
