@@ -1,42 +1,46 @@
-<div class="col-md-2 offset-1">
-  <h3 class="my-3 bg-light text-center">
+<div class="offset-1 d-flex">
+  <h3 class="my-3 bg-light text-center px-5">
     <strong>
       <%= @user == current_user ? 'マイページ' : @user.name %>
     </strong>
   </h3>
-</div>
-
-<% if @user == current_user %>
-  <div class="col-md-4 offset-1 d-flex justify-content-start my-3">
-    <div class="mx-5"><%= link_to "編集する", edit_user_registration_path, class: 'btn btn-sm btn-success' %></div>
-  </div>
-<% end %>
-
-<div class="col-md-4 offset-1">
-  <table class="table table-bordered">
-    <tbody>
-      <tr class="text-center">
-        <th>氏名</th>
-        <td><%= @user.name %></td>
-        <td><%= image_tag @user.get_image(100,100) %></td>
-      </tr>
-      <tr>
-        <th class="text-center">自己紹介</th>
-          <td colspan=2><%= @user.introduction %></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="col-md-4 offset-1">
-  <% @user.posts.each do |post| %>
-    <div>
-      <div class="my-3">タイトル：<%= post.title %></div>
-      <div class="my-3">本文：<%= post.body %></div>
-      <%= link_to post_path(post.id) do %>
-        <div class="mt-3"><%= image_tag post.get_image %></div>
-      <% end %>
-      <div><%= post.created_at.strftime('%Y/%m/%d') %></div>
+  <% if @user == current_user %>
+    <div class="col-md-4 offset-1 d-flex justify-content-start my-3">
+      <div class="mx-5"><%= link_to "編集する", edit_user_registration_path, class: 'btn btn-sm btn-success' %></div>
     </div>
   <% end %>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-4 offset-1 mt-3">
+    <table class="table table-bordered">
+      <tbody>
+        <tr class="text-center">
+          <th>氏名</th>
+          <td><%= @user.name %></td>
+          <td><%= image_tag @user.get_image(100,100) %></td>
+        </tr>
+        <tr>
+          <th class="text-center">自己紹介</th>
+            <td colspan=2><%= @user.introduction %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-4 offset-1">
+    <% @user.posts.each do |post| %>
+      <div>
+        <div class="my-3">
+          <h3><strong><%= post.title %></strong></h3>
+        </div>
+        <div class="my-3"><%= post.body %></div>
+        <%= link_to post_path(post.id) do %>
+          <div class="mt-3"><%= image_tag post.get_show_image(300, 300), class: 'img-fluid' %></div>
+        <% end %>
+        <div><%= post.created_at.strftime('%Y/%m/%d') %></div>
+      </div>
+    <% end %>
+  </div>
 </div>

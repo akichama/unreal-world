@@ -2,20 +2,25 @@
   <div class="col-md-3 offset-1">
     <h3 class="my-3 bg-light text-center"><strong>投稿一覧</strong></h3>
   </div>
-  
+
   <div class="row">
     <div class="col-md-12">
       <div class="col-md-4 offset-1">
         <% @posts.each do |post| %>
             <div>
-              <div class="my-4">タイトル：<%= post.title %></div>
-              <div class="my-4">本文：<%= post.body %></div>
+              <div class="my-4">
+                 <h3><strong><%= post.title %></strong></h3>
+              </div>
+              <div class="my-4"><%= post.body %></div>
               <%= link_to post_path(post.id) do %>
-                <div class="mt-4"><%= image_tag post.get_image %></div>
+                <div class="mt-4"><%= image_tag post.get_index_image(500,500), class: 'img-fluid' %></div>
               <% end %>
               <div>
                 <%= post.user.name %>
                 <%= post.created_at.strftime('%Y/%m/%d') %>
+              </div>
+              <div>
+                コメント件数：<%= post.post_comments.count %>
               </div>
             </div>
         <% end %>
