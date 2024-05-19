@@ -20,6 +20,7 @@ class PostsController < ApplicationController
   def index
     @user = current_user
     @posts = Post.all
+    @post_comment = PostComment.new
   end
 
   def show
