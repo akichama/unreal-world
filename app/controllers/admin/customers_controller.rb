@@ -5,7 +5,4 @@ class Admin::CustomersController < ApplicationController
 
   def show
   end
-
-  def destroy
-  end
 end
