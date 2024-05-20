@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :users, only: [:index,:show,:destroy]
+    resources :posts, only: [:show, :destroy] do
+      resources :post_comments, only: [:destroy]
+    end
+  end
+
   root controller: :homes, action: :top
   get :about, controller: :homes, action: :about
   get :search, controller: :searches, action: :search
@@ -28,5 +35,4 @@ Rails.application.routes.draw do
   end
 
   resources :notifications, only: [:index, :destroy]
-  
 end
