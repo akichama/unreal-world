@@ -33,6 +33,6 @@
       <%= f.file_field :image, accept: "image/*" %>
     </div>
   </div>
-  <div class="mx-1 my-1"><%= link_to "更新", post_path(@post.id), class: 'btn btn-sm btn-success' %></div>
+  <div class="mx-1 my-1"><%= f.submit "更新", class: 'btn btn-sm btn-success' %></div>
   <div class="mx-1 my-1"><%= link_to '戻る', posts_path, class: "btn btn-sm btn-danger" %></div>
 <% end %>

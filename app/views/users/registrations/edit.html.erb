@@ -42,7 +42,7 @@
       </div>
   </div>
 
-  <div class="mx-1 my-1"><%= link_to "更新", mypage_users_path, class: 'btn btn-sm btn-success' %></div>
+  <div class="mx-1 my-1"><%= f.submit "更新", class: 'btn btn-sm btn-success' %></div>
 
   <div class="mx-1 my-1"><%= link_to '退会', registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-sm btn-danger" %></div>
 

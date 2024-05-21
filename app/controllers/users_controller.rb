@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
+
   def mypage
     @posts = current_user.posts
     @user = current_user
