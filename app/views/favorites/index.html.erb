@@ -1,8 +1,45 @@
-<h1>Favorites#index</h1>
-<ul>
-  <% @favorites.each do |favorite| %>
-    <li>
-      <%= favorite.post.title %>
-    </li>
-  <% end %>
-</ul>
+<div class="offset-1 d-flex">
+  <h3 class="my-3 bg-light text-center px-5">
+    <strong>
+      いいね一覧
+    </strong>
+  </h3>
+</div>
+      
+<div class="row offset-2 mt-3">
+  <div class="col-md-12">
+    <div class="col-md-4 offset-1">
+      <% @favorites.each do |favorite| %>
+          <div>
+            <div class="my-4">
+               <h3><strong><%= favorite.post.title %></strong></h3>
+            </div>
+            <div class="my-4"><%= favorite.post.body %></div>
+            <%= link_to post_path(favorite.post.id) do %>
+              <div class="mt-4"><%= image_tag favorite.post.get_index_image(500,500), class: 'img-fluid' %></div>
+            <% end %>
+            <div>
+              <%= favorite.post.user.name %>
+              <%= favorite.post.created_at.strftime('%Y/%m/%d') %>
+            </div>
+            <div>
+              コメント件数：<%= favorite.post.post_comments.count %>
+            </div>
+            <% if favorite.post.favorited_by?(current_user) %>
+              <p>
+                <%= link_to post_favorites_path(favorite.post), method: :delete do %>
+                  ♥<%= favorite.post.favorites.count %> いいね
+                <% end %>
+              </p>
+            <% else %>
+              <p>
+                <%= link_to post_favorites_path(favorite.post), method: :post do %>
+                  ♡<%= favorite.post.favorites.count %> いいね
+                <% end %>
+              </p>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
