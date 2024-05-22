@@ -52,4 +52,9 @@ class Post < ApplicationRecord
       @post = Post.all
     end
   end
+  
+  def favorited_by?(current_user)
+    favorites.exists?(user_id: user.id)
+  end
+  
 end
