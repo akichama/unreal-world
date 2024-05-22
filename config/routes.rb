@@ -21,15 +21,18 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     resource :relationships, only: [:create, :destroy]
-    get :followings
+    get :follows
     get :followers
     collection do
       get :mypage
+      get 'favorites', to: 'favorites#index'
     end
   end
 
+
   resources :posts do
     resources :post_comments, only: [:create, :destroy]
+
     resource :favorites, only: [:create, :destroy]
     resources :favorite_users, only: [:index]
   end
