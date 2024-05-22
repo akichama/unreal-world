@@ -1,2 +1,8 @@
 <h1>Favorites#index</h1>
-<p>Find me in app/views/favorites/index.html.erb</p>
+<ul>
+  <% @favorites.each do |favorite| %>
+    <li>
+      <%= favorite.post.title %>
+    </li>
+  <% end %>
+</ul>

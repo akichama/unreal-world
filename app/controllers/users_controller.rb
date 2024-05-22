@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   def mypage
     @posts = current_user.posts
     @user = current_user
+    @following_users = @user.following_users
+    @follower_users = @user.follower_users
     render :show
   end
 
@@ -30,10 +32,14 @@ class UsersController < ApplicationController
   #   redirect_to new_user_registration_path
   # end
 
-  def followings
+  def follows
+    user = User.find(params[:user_id])
+    @users = user.following_users
   end
 
   def followers
+    user = User.find(params[:user_id])
+    @users = user.follower_users
   end
 
   # private
