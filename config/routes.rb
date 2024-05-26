@@ -37,5 +37,5 @@ Rails.application.routes.draw do
     resources :favorite_users, only: [:index]
   end
 
-  resources :notifications, only: [:index, :destroy]
+  resources :notifications, only: [:index, :destroy, :update]
 end
