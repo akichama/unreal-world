@@ -1,12 +1,12 @@
 <div class="row">
-  <div class="offset-2 my-5">
+  <div class="my-5 col-md-8 mx-auto">
     <div class="d-flex justfy-content-center">
       <div class="mx-5">
         <div>
           <div class="mx-5">
           <div class="mx-5"><h2><%= link_to @user.name, user_path(@user.id) %></h2>
           <div class="my-5"><h1><strong><%= @post.title %></strong></h1></div>
-          <div class="my-5"><h2><%= @post.body %></h2></div>
+          <div class="my-5 text-break"><%= @post.body %></div>
           <div class="my-5"><%= image_tag @post.get_show_image(500, 500), class: 'img-fluid' %>
           <div>
             <div class="my-4">
@@ -15,7 +15,7 @@
               <% @post.post_comments.each do |post_comment| %>
                 <div><%= link_to post_comment.user.name, user_path(post_comment.user) %></div>
                 <div><%= post_comment.created_at.strftime('%Y/%m/%d') %></div>
-                <div><%= post_comment.comment %></div>
+                <div class="text-break"><%= post_comment.comment %></div>
               <%# if @post_comment.user == current_user %>
                 <div><%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete,  data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></div>
               <%# end %>

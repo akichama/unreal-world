@@ -1,9 +1,9 @@
 class PostComment < ApplicationRecord
   belongs_to :user
   belongs_to :post
-  
+
   validates :comment, presence: true
-  
+
    has_one :notification, as: :notifiable, dependent: :destroy
 
   after_create do

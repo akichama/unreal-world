@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :notifications, as: :notifiable, dependent: :destroy
   has_one_attached :image
   belongs_to :user
 
@@ -56,6 +57,12 @@ class Post < ApplicationRecord
 
   def favorited_by?(current_user)
     favorites.exists?(user_id: current_user.id)
+  end
+
+  after_create do
+    user.followeds.each do |followed|
+      notifications.create(user_id: followed.follower_id)
+    end
   end
 
 end
