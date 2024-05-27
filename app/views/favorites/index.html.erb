@@ -8,13 +8,13 @@
       
 <div class="row offset-2 mt-3">
   <div class="col-md-12">
-    <div class="col-md-4 offset-1">
+    <div class="col-md-4 mx-auto">
       <% @favorites.each do |favorite| %>
           <div>
             <div class="my-4">
                <h3><strong><%= favorite.post.title %></strong></h3>
             </div>
-            <div class="my-4"><%= favorite.post.body %></div>
+            <div class="my-4 text-break"><%= favorite.post.body %></div>
             <%= link_to post_path(favorite.post.id) do %>
               <div class="mt-4"><%= image_tag favorite.post.get_index_image(500,500), class: 'img-fluid' %></div>
             <% end %>

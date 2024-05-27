@@ -12,6 +12,9 @@
             <div class="my-4">
               コメント件数：<%= @post.post_comments.count %>
             </div>
+            <div id="favorite_buttons_<%= @post.id %>" >
+              <%= render partial: "favorites/favorite", locals: {post: @post} %>
+            </div>
               <% @post.post_comments.each do |post_comment| %>
                 <div><%= link_to post_comment.user.name, user_path(post_comment.user) %></div>
                 <div><%= post_comment.created_at.strftime('%Y/%m/%d') %></div>
