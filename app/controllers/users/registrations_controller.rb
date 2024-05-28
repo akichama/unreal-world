@@ -15,14 +15,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    redirect_to root_path, notice: '権限がありません' and return if current_user.email == 'guest@example.com'
+    super
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    redirect_to root_path, notice: '権限がありません' and return if current_user.email == 'guest@example.com'
+    super
+  end
 
   # DELETE /resource
   # def destroy

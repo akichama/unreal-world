@@ -1,11 +1,11 @@
 <div class="offset-1 d-flex">
   <h3 class="my-3 bg-light text-center px-5">
     <strong>
-      いいね一覧
+      お気に入り一覧
     </strong>
   </h3>
 </div>
-      
+
 <div class="row offset-2 mt-3">
   <div class="col-md-12">
     <div class="col-md-4 mx-auto">
@@ -28,13 +28,13 @@
             <% if favorite.post.favorited_by?(current_user) %>
               <p>
                 <%= link_to post_favorites_path(favorite.post), method: :delete do %>
-                  ♥<%= favorite.post.favorites.count %> いいね
+                  ♥<%= favorite.post.favorites.count %> お気に入り
                 <% end %>
               </p>
             <% else %>
               <p>
                 <%= link_to post_favorites_path(favorite.post), method: :post do %>
-                  ♡<%= favorite.post.favorites.count %> いいね
+                  ♡<%= favorite.post.favorites.count %> お気に入り
                 <% end %>
               </p>
             <% end %>

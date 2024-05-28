@@ -4,18 +4,12 @@
       <%= @user == current_user ? 'マイページ' : @user.name %>
     </strong>
   </h3>
-  <% if @user == current_user %>
+  <% if @user == current_user && current_user.email != 'guest@example.com' %>
     <div class="col-md-4 offset-1 d-flex justify-content-start my-3">
       <div class="mx-5"><%= link_to "編集する", edit_user_registration_path, class: 'btn btn-sm btn-success' %></div>
     </div>
   <% end %>
 </div>
-
-<% unless @user.guest_user? %>
-  <div class="row">
-    <%= link_to "",edit_user_path(user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
-  </div>
-<% end %>
 
 <div class="row">
   <div class="col-md-4 offset-1 mt-3">
