@@ -1,4 +1,5 @@
-<table class="table table-hover table-inverse">
+<div class="container py-5">
+  <table class="table table-hover table-inverse">
   <!--検索対象モデルがUserの時 -->
   <% if @range == "User" %>
   <h2>ユーザー検索"<%= @word %>"</h2>
@@ -6,14 +7,13 @@
       <tr>
         <th>画像</th>
         <th>名前</th>
-        <th colspan="3"></th>
       </tr>
     </thead>
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= image_tag user.get_image(100, 100) %></td>
-          <td><%= user.name %></td>
+          <td><%= link_to (image_tag user.get_image(100, 100)), user_path(user) %></td>
+          <td><%= link_to user.name, user_path(user) %></td>
         </tr>
       <% end %>
     </tbody>
@@ -24,7 +24,6 @@
         <th></th>
         <th>タイトル</th>
         <th>本文</th>
-
       </tr>
     <tbody>
     <h2>POST検索"<%= @word %>"</h2>
@@ -42,3 +41,4 @@
     </tbody>
   <% end %>
 </table>
+</div>
