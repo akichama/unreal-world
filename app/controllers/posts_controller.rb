@@ -10,7 +10,12 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    tags = Vision.get_image_data(post_params[:image])
+    @post.score = Language.get_data(post_params[:body])
     if @post.save
+      tags.each do |tag|
+        @post.tags.create(name: tag)
+      end
       redirect_to post_path(@post)
     else
       render :new
