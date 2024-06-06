@@ -10,7 +10,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    tags = Vision.get_image_data(post_params[:image]).compact
+    tags = []
+    if post_params[:image].present?
+      tags = Vision.get_image_data(post_params[:image]).compact
+    end
     @post.score = Language.get_data(post_params[:body])
     if @post.save
       tags.each do |tag|
