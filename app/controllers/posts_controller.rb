@@ -10,11 +10,11 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    tags = Vision.get_image_data(post_params[:image])
+    tags = Vision.get_image_data(post_params[:image]).compact
     @post.score = Language.get_data(post_params[:body])
     if @post.save
       tags.each do |tag|
-        @post.tags.create(name: tag)
+        @post.tags.create!(name: tag)
       end
       redirect_to post_path(@post)
     else
@@ -24,8 +24,10 @@ class PostsController < ApplicationController
 
   def index
     @user = current_user
-    @posts = Post.order(created_at: :desc)
-    @posts = Post.page(params[:page])
+    @posts = Post.includes(:tags)
+    @posts = @posts.where('tags.name': params[:tag_name]) if params[:tag_name].present?
+    @posts = @posts.order(created_at: :desc)
+    @posts = @posts.page(params[:page])
     @post_comment = PostComment.new
   end
 
